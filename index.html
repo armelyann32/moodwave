@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MOODWAVE — La musique qui suit ton humeur</title>
+  <meta name="description" content="MOODWAVE : choisis ton humeur, l'application te propose la playlist qui va avec.">
+  <meta name="theme-color" content="#0B0B12">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-mood="chill">
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="g-wave" x1="0" x2="1"><stop offset="0" style="stop-color:var(--c1)"/><stop offset="1" style="stop-color:var(--c2)"/></linearGradient>
+    </defs>
+    <symbol id="i-wave" viewBox="0 0 32 32"><path d="M3 16c2.5-11 5-11 7.5 0s5 11 7.5 0 5-11 7.5 0c1 4.2 2 6 3.5 6" fill="none" stroke="url(#g-wave)" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="i-wave-line" viewBox="0 0 32 32"><path d="M3 16c2.5-11 5-11 7.5 0s5 11 7.5 0 5-11 7.5 0c1 4.2 2 6 3.5 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-library" viewBox="0 0 24 24"><path d="M4 4v16M8.5 4v16M13 4v16M16.5 5l4 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M4 6h12M4 11h12M4 16h8M18 14v7M14.5 17.5h7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-queue" viewBox="0 0 24 24"><path d="M4 6h14M4 11h14M4 16h8M16 14.5v6l5-3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.2-9.4C1.6 7.1 4 4 7.2 4c2 0 3.5 1.1 4.8 2.8C13.3 5.1 14.8 4 16.8 4 20 4 22.4 7.1 21.2 10.6 19.5 15.4 12 20 12 20z" style="fill: var(--heart-fill, none)" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 8 5.2z" fill="currentColor"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1.2" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.2" fill="currentColor"/></symbol>
+    <symbol id="i-prev" viewBox="0 0 24 24"><path d="M18 5.5v13a1 1 0 0 1-1.6.8L8 13v6H6V5h2v6l8.4-6.3a1 1 0 0 1 1.6.8z" fill="currentColor"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path d="M6 5.5v13a1 1 0 0 0 1.6.8L16 13v6h2V5h-2v6L7.6 4.7a1 1 0 0 0-1.6.8z" fill="currentColor"/></symbol>
+    <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 7h3.5c4.5 0 6.5 10 11 10H21M3 17h3.5c1.6 0 2.8-1.2 3.8-2.8M13.7 9.8C14.7 8.2 15.9 7 17.5 7H21M18 4l3 3-3 3M18 14l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2l3 3-3 3M4 11V9a4 4 0 0 1 4-4h12M7 22l-3-3 3-3M20 13v2a4 4 0 0 1-4 4H4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M17 9l5 6M22 9l-5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-dots" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.7" fill="currentColor"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/><circle cx="19" cy="12" r="1.7" fill="currentColor"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.6L19.5 10l-5.7 1.6L12 17l-1.8-5.4L4.5 10l5.7-1.4z" fill="currentColor"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-device" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="12" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 15v4M8 20h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  </svg>
+
+  <!-- Halo lumineux animé aux couleurs de l'humeur -->
+  <div class="glow" aria-hidden="true"><span></span><span></span></div>
+
+  <div class="app">
+    <!-- ================= BARRE LATÉRALE (ordinateur) ================= -->
+    <aside class="sidebar">
+      <a href="#accueil" class="brand" aria-label="MOODWAVE, accueil">
+        <span class="logo"><svg class="logo-wave"><use href="#i-wave"/></svg>MOODWAVE</span>
+        <span class="tagline">La musique qui suit ton humeur</span>
+      </a>
+
+      <p class="side-label">Explorer</p>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#accueil" data-link="accueil"><svg><use href="#i-home"/></svg>Accueil</a>
+        <a href="#rechercher" data-link="rechercher"><svg><use href="#i-search"/></svg>Rechercher</a>
+        <a href="#bibliotheque" data-link="bibliotheque"><svg><use href="#i-library"/></svg>Ma bibliothèque<span class="count" id="lib-count">0</span></a>
+        <a href="#playlists" data-link="playlists"><svg><use href="#i-list"/></svg>Mes playlists</a>
+      </nav>
+
+      <p class="side-label">Tes espaces</p>
+      <ul class="spaces" id="spaces"></ul>
+
+      <div class="side-card">
+        <p class="side-card-title">À ton rythme.</p>
+        <p class="side-card-text">Cherche n'importe quel titre<br>et garde-le dans ta bibliothèque.</p>
+        <a href="#rechercher" class="side-card-link">Rechercher un son <svg><use href="#i-arrow"/></svg></a>
+      </div>
+      <p class="side-label side-foot">Le son de ton humeur</p>
+    </aside>
+
+    <!-- ================= EN-TÊTE (mobile) ================= -->
+    <header class="topbar">
+      <a href="#accueil" class="brand">
+        <span class="logo"><svg class="logo-wave"><use href="#i-wave"/></svg>MOODWAVE</span>
+        <span class="tagline">La musique qui suit ton humeur</span>
+      </a>
+      <a href="#rechercher" class="avatar" aria-label="Rechercher"><svg><use href="#i-search"/></svg></a>
+    </header>
+
+    <!-- ================= CONTENU PRINCIPAL ================= -->
+    <main id="main">
+      <div class="main-top">
+        <form class="search top-search" id="top-search" role="search">
+          <svg><use href="#i-search"/></svg>
+          <input type="search" id="top-search-input" placeholder="Rechercher un titre, un artiste, un album…" autocomplete="off" aria-label="Rechercher une chanson">
+        </form>
+        <p class="pill"><svg><use href="#i-sparkle"/></svg><span id="mood-pill">Un peu de calme, beaucoup de son</span></p>
+      </div>
+
+      <!-- ACCUEIL -->
+      <section class="view" data-view="accueil">
+        <p class="greeting" id="greeting">Bonsoir</p>
+        <h1 class="title-xl">Comment tu te sens ?</h1>
+        <p class="subtitle">Choisis ton humeur. On s'occupe de la bande-son.</p>
+
+        <div class="moods" id="moods" role="radiogroup" aria-label="Choisis ton humeur"></div>
+        <p class="caption" id="mood-caption">Un peu de douceur pour ta soirée.</p>
+
+        <div class="list-head">
+          <div>
+            <h2 class="title-lg" id="mood-title">Ta playlist Chill</h2>
+            <p class="list-sub" id="mood-sub"></p>
+          </div>
+          <button class="btn btn-accent" id="play-mood"><svg><use href="#i-play"/></svg><span>Tout lire</span></button>
+        </div>
+        <div class="tracks-head" aria-hidden="true"><span>#</span><span>Titre</span><span>Album</span><svg><use href="#i-clock"/></svg></div>
+        <ol class="tracks" id="mood-tracks"></ol>
+        <p class="status" id="mood-status" hidden></p>
+      </section>
+
+      <!-- RECHERCHER -->
+      <section class="view" data-view="rechercher" hidden>
+        <h1 class="title-xl">Rechercher</h1>
+        <p class="subtitle">Des millions de vraies chansons. Ajoute celles que tu aimes à ta bibliothèque avec <strong>＋</strong>.</p>
+        <form class="search big-search" id="search-form" role="search">
+          <svg><use href="#i-search"/></svg>
+          <input type="search" id="search" placeholder="Titre, artiste ou album" autocomplete="off" aria-label="Rechercher une chanson">
+          <button type="button" class="icon-btn" id="search-clear" aria-label="Effacer la recherche" hidden><svg><use href="#i-x"/></svg></button>
+        </form>
+        <div id="search-suggest">
+          <p class="side-label">Idées de recherche</p>
+          <div class="chips" id="suggest-chips"></div>
+        </div>
+        <p class="list-sub" id="search-info"></p>
+        <div class="tracks-head" id="search-head" aria-hidden="true" hidden><span>#</span><span>Titre</span><span>Album</span><svg><use href="#i-clock"/></svg></div>
+        <ol class="tracks" id="search-results"></ol>
+        <p class="status" id="search-status" hidden></p>
+      </section>
+
+      <!-- MA BIBLIOTHÈQUE -->
+      <section class="view" data-view="bibliotheque" hidden>
+        <div class="list-head">
+          <div>
+            <h1 class="title-xl">Ma bibliothèque</h1>
+            <p class="list-sub" id="lib-sub"></p>
+          </div>
+          <button class="btn btn-accent" id="lib-play"><svg><use href="#i-play"/></svg>Tout lire</button>
+        </div>
+        <label class="search lib-filter" id="lib-filter-wrap">
+          <svg><use href="#i-search"/></svg>
+          <input type="search" id="lib-filter" placeholder="Filtrer ma bibliothèque" autocomplete="off">
+        </label>
+        <div class="tracks-head" id="lib-head" aria-hidden="true"><span>#</span><span>Titre</span><span>Album</span><svg><use href="#i-clock"/></svg></div>
+        <ol class="tracks" id="lib-tracks"></ol>
+        <div class="empty" id="lib-empty">
+          <p>Ta bibliothèque est vide pour l'instant.</p>
+          <a href="#rechercher" class="btn btn-accent"><svg><use href="#i-search"/></svg>Rechercher des chansons</a>
+        </div>
+      </section>
+
+      <!-- MES PLAYLISTS -->
+      <section class="view" data-view="playlists" hidden>
+        <div id="pl-list-view">
+          <h1 class="title-xl">Mes playlists</h1>
+          <p class="subtitle">Crée une playlist, puis ajoute des chansons avec le bouton ⋯ d'un titre.</p>
+          <form class="new-pl" id="new-pl">
+            <input type="text" id="new-pl-name" placeholder="Nom de la nouvelle playlist" maxlength="40" required>
+            <button class="btn btn-accent" type="submit"><svg><use href="#i-plus"/></svg>Créer</button>
+          </form>
+          <div class="pl-grid" id="pl-grid"></div>
+          <p class="empty" id="pl-empty">Tu n'as pas encore de playlist. Crée la première !</p>
+        </div>
+        <div id="pl-detail-view" hidden>
+          <button class="btn btn-ghost" id="pl-back"><svg><use href="#i-back"/></svg>Mes playlists</button>
+          <div class="list-head">
+            <div>
+              <h2 class="title-lg" id="pl-title"></h2>
+              <p class="list-sub" id="pl-sub"></p>
+            </div>
+            <div class="head-actions">
+              <button class="btn btn-ghost icon-only" id="pl-delete" aria-label="Supprimer la playlist"><svg><use href="#i-trash"/></svg></button>
+              <button class="btn btn-accent" id="pl-play"><svg><use href="#i-play"/></svg>Tout lire</button>
+            </div>
+          </div>
+          <div class="tracks-head" id="pl-head" aria-hidden="true"><span>#</span><span>Titre</span><span>Album</span><svg><use href="#i-clock"/></svg></div>
+          <ol class="tracks" id="pl-tracks"></ol>
+          <p class="empty" id="pl-tracks-empty">Playlist vide : ajoute des chansons avec le bouton ⋯ à côté d'un titre.</p>
+        </div>
+      </section>
+
+      <p class="credits">Titres, pochettes et extraits de 30 secondes fournis par l'API iTunes d'Apple. Écoute intégrale sur Apple Music.</p>
+    </main>
+
+    <!-- ================= BARRE DE LECTURE ================= -->
+    <footer class="player" id="player">
+      <div class="mini-progress"><span id="mini-bar"></span></div>
+      <div class="now">
+        <button class="now-open" id="open-full" aria-label="Ouvrir le lecteur">
+          <img class="cover cover-sm" id="p-cover" alt="" src="assets/favicon.svg">
+          <span class="now-text">
+            <strong id="p-title">Choisis une chanson</strong>
+            <span id="p-artist">MOODWAVE</span>
+          </span>
+        </button>
+        <button class="icon-btn add-btn" id="p-add" aria-label="Ajouter à ma bibliothèque"><svg><use href="#i-plus"/></svg></button>
+      </div>
+
+      <div class="controls">
+        <div class="buttons">
+          <button class="icon-btn toggle" id="shuffle" aria-label="Lecture aléatoire" aria-pressed="false"><svg><use href="#i-shuffle"/></svg></button>
+          <button class="icon-btn" id="prev" aria-label="Précédent"><svg><use href="#i-prev"/></svg></button>
+          <button class="play-btn" id="play" aria-label="Lecture"><svg><use href="#i-play"/></svg></button>
+          <button class="icon-btn" id="next" aria-label="Suivant"><svg><use href="#i-next"/></svg></button>
+          <button class="icon-btn toggle" id="repeat" aria-label="Répéter" data-mode="off"><svg><use href="#i-repeat"/></svg><span class="badge">1</span></button>
+        </div>
+        <div class="progress-row">
+          <span class="time" id="cur">0:00</span>
+          <input type="range" class="range" id="seek" min="0" max="100" value="0" step="0.1" aria-label="Position dans le morceau">
+          <span class="time" id="dur">0:30</span>
+        </div>
+      </div>
+
+      <div class="extras">
+        <button class="icon-btn" id="queue-btn" aria-label="File d'attente"><svg><use href="#i-queue"/></svg></button>
+        <button class="icon-btn" id="mute" aria-label="Couper le son"><svg><use href="#i-volume"/></svg></button>
+        <input type="range" class="range" id="vol" min="0" max="1" step="0.01" value="0.8" aria-label="Volume">
+        <button class="icon-btn" id="expand" aria-label="Lecteur plein écran"><svg><use href="#i-expand"/></svg></button>
+      </div>
+    </footer>
+
+    <!-- ================= ONGLETS (mobile) ================= -->
+    <nav class="tabbar" aria-label="Navigation mobile">
+      <a href="#accueil" data-link="accueil"><svg><use href="#i-home"/></svg>Accueil</a>
+      <a href="#rechercher" data-link="rechercher"><svg><use href="#i-search"/></svg>Rechercher</a>
+      <a href="#bibliotheque" data-link="bibliotheque"><svg><use href="#i-library"/></svg>Bibliothèque</a>
+      <a href="#playlists" data-link="playlists"><svg><use href="#i-list"/></svg>Playlists</a>
+    </nav>
+  </div>
+
+  <!-- ================= LECTEUR PLEIN ÉCRAN ================= -->
+  <div class="full" id="full" aria-hidden="true" role="dialog" aria-label="Lecteur">
+    <div class="full-inner">
+      <div class="full-top">
+        <button class="icon-btn" id="close-full" aria-label="Fermer le lecteur"><svg><use href="#i-down"/></svg></button>
+        <span class="mood-badge" id="full-badge">Extrait · 30 s</span>
+        <button class="icon-btn" id="full-more" aria-label="Plus d'options"><svg><use href="#i-dots"/></svg></button>
+      </div>
+      <p class="eyebrow center" id="full-context">Lecture en cours</p>
+
+      <img class="cover cover-xl" id="full-cover" alt="" src="assets/favicon.svg">
+
+      <div class="full-info">
+        <div>
+          <h2 class="full-title" id="full-title">—</h2>
+          <p id="full-artist">—</p>
+        </div>
+        <button class="icon-btn add-btn" id="full-add" aria-label="Ajouter à ma bibliothèque"><svg><use href="#i-plus"/></svg></button>
+      </div>
+
+      <div class="full-progress">
+        <input type="range" class="range" id="full-seek" min="0" max="100" value="0" step="0.1" aria-label="Position dans le morceau">
+        <div class="full-times"><span class="time" id="full-cur">0:00</span><span class="time" id="full-dur">0:30</span></div>
+      </div>
+
+      <div class="buttons big">
+        <button class="icon-btn toggle" data-proxy="shuffle" aria-label="Lecture aléatoire"><svg><use href="#i-shuffle"/></svg></button>
+        <button class="icon-btn" data-proxy="prev" aria-label="Précédent"><svg><use href="#i-prev"/></svg></button>
+        <button class="play-btn" data-proxy="play" aria-label="Lecture"><svg><use href="#i-play"/></svg></button>
+        <button class="icon-btn" data-proxy="next" aria-label="Suivant"><svg><use href="#i-next"/></svg></button>
+        <button class="icon-btn toggle" data-proxy="repeat" aria-label="Répéter"><svg><use href="#i-repeat"/></svg><span class="badge">1</span></button>
+      </div>
+
+      <div class="full-bottom">
+        <a id="full-link" href="https://music.apple.com" target="_blank" rel="noopener"><svg><use href="#i-external"/></svg>Écouter en entier sur Apple Music</a>
+        <button class="icon-btn" id="full-queue" aria-label="File d'attente"><svg><use href="#i-queue"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu contextuel (ajout à une playlist, file d'attente…) -->
+  <div class="menu" id="menu" role="menu" hidden></div>
+  <!-- Notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <audio id="audio" preload="none"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
