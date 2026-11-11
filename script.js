@@ -67,6 +67,15 @@ function toTrack(r) {
 // Appel à l'API : on utilise fetch, et en secours la technique JSONP si fetch est bloqué
 async function apiGet(path, params) {
   const query = new URLSearchParams({ ...params, country: COUNTRY }).toString();
+  // 1) Notre relais Vercel (/api/itunes) : indispensable sur iPhone, où Apple redirige
+  //    les recherches vers l'application Musique au lieu de renvoyer les résultats.
+  if (location.protocol.startsWith('http')) {
+    try {
+      const res = await fetch(`/api/itunes?type=${path}&${query}`);
+      if (res.ok) return await res.json();
+    } catch { /* relais indisponible : on essaie en direct */ }
+  }
+  // 2) Sinon l'API iTunes en direct, et 3) JSONP en dernier secours.
   try {
     const res = await fetch(`${API}/${path}?${query}`);
     if (!res.ok) throw new Error('HTTP ' + res.status);
